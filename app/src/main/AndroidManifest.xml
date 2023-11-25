@@ -15,6 +15,9 @@
         <activity
             android:name=".menuActivity"
             android:exported="false" />
+        <activity android:name=".MainPage_Activity"
+            android:exported="false">
+        </activity>
         <activity
             android:name=".mainpage"
             android:exported="false" />

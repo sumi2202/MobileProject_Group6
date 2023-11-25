@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                    if(checkpass == true){                               //If the password exists and is correct, a toast will display notifying user
                      Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), mainpage.class);    //Brings user to main page
+                    Intent intent = new Intent(getApplicationContext(), MainPage_Activity.class);    //Brings user to main page
                     startActivity(intent);
                      } else {                       //If the entered password does not match any values in the db, a toast will display
                      Toast.makeText(MainActivity.this, "Invalid values entered.", Toast.LENGTH_SHORT).show();
