@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FoodDelivery_MobileProject_Group6</string>
+    <string name="main_name">Project_MainPage</string>
+    <string name="hello_user">Hello User</string>
+    <string name="subgreeting">Welcome back</string>
+    <string name="points_0">Points: 0</string>
 </resources>
