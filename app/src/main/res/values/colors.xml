@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#F26419</color>
+    <color name="forest_green">#248232</color>
+    <color name="carmine">#96031a</color>
+    <color name="raisin">#272932</color>
+    <color name="powder">#fffffa</color>
 </resources>
