@@ -94,17 +94,7 @@
 
         </EditText>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password?"
-        android:gravity="right"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:textColor="#248232">
-
-        </TextView>
+   
 
     <LinearLayout
         android:layout_width="match_parent"
