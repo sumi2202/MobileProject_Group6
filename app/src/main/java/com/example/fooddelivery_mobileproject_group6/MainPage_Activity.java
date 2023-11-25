@@ -1,4 +1,4 @@
-package com.example.project_mainpage;
+package com.example.fooddelivery_mobileproject_group6;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;

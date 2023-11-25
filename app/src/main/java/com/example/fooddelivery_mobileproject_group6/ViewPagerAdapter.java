@@ -1,4 +1,4 @@
-package com.example.project_mainpage;
+package com.example.fooddelivery_mobileproject_group6;
 
 import android.content.Context;
 import android.view.LayoutInflater;

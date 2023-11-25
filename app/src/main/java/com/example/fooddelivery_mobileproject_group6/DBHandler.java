@@ -1,4 +1,4 @@
-package com.example.foodorder;
+package com.example.fooddelivery_mobileproject_group6;
 
 import android.content.ContentValues;
 import android.content.Context;
