@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.fooddelivery_mobileproject_group6.Dish;
+import com.example.fooddelivery_mobileproject_group6.Resteraunt;
 
 public class ResterauntDBMgr {
     private ResterauntDBHelper dbHelper;
@@ -29,11 +30,11 @@ public class ResterauntDBMgr {
         dbHelper.close();
     }
 
-    public void insert(Dish dish) {
+    public void insert(Resteraunt resteraunt) {
         ContentValues contentValue = new ContentValues();
-        contentValue.put(ResterauntDBHelper.RESTERAUNT_ID,    dish.getDishName());
-        contentValue.put(ResterauntDBHelper.RESTERAUNT_NAME,  dish.getDishPrice());
-        contentValue.put(ResterauntDBHelper.IMAGE,            dish.getImage());
+        contentValue.put(ResterauntDBHelper.RESTERAUNT_ID,    resteraunt.getResterauntId());
+        contentValue.put(ResterauntDBHelper.RESTERAUNT_NAME,  resteraunt.getResterauntName());
+        contentValue.put(ResterauntDBHelper.IMAGE,            resteraunt.getImage());
         database.insert(ResterauntDBHelper.TABLE_NAME, null, contentValue);
     }
 
@@ -46,12 +47,12 @@ public class ResterauntDBMgr {
         return cursor;
     }
 
-    public int update(Dish dish) {
+    public int update(Resteraunt resteraunt) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ResterauntDBHelper.RESTERAUNT_ID,   dish.getDishId());
-        contentValues.put(ResterauntDBHelper.RESTERAUNT_NAME, dish.getDishPrice());
-        contentValues.put(ResterauntDBHelper.IMAGE,           dish.getImage());
-        int i = database.update(ResterauntDBHelper.TABLE_NAME, contentValues, ResterauntDBHelper.RESTERAUNT_ID + " = " + dish.getDishId(), null);
+        contentValues.put(ResterauntDBHelper.RESTERAUNT_ID,   resteraunt.getResterauntId());
+        contentValues.put(ResterauntDBHelper.RESTERAUNT_NAME, resteraunt.getResterauntName());
+        contentValues.put(ResterauntDBHelper.IMAGE,           resteraunt.getImage());
+        int i = database.update(ResterauntDBHelper.TABLE_NAME, contentValues, ResterauntDBHelper.RESTERAUNT_ID + " = " + resteraunt.getResterauntId(), null);
         return i;
     }
 
