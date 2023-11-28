@@ -1,4 +1,4 @@
-package com.example.fooddelivery_mobileproject_group6;
+package com.example.fooddelivery_mobileproject_group6.database;
 
 import android.content.ContentValues;
 import android.content.Context;

@@ -43,9 +43,10 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
 
         // Set item views based on your views and data model
         TextView nameTextView = holder.nameTextView;
-        nameTextView.setText(dish.getName());
+        nameTextView.setText(dish.getDishName());
         TextView priceTextView = holder.priceTextView;
-        priceTextView.setText(dish.getPrice());
+        priceTextView.setText(dish.getDishPrice());
+
         Button button = holder.messageButton;
         button.setText("Add");
     }

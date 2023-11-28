@@ -18,16 +18,16 @@ public class menuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         // Lookup the recyclerview in activity layout
-        RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvDishes);
+        RecyclerView rvDishes = (RecyclerView) findViewById(R.id.rvDishes);
 
-        // Initialize contacts
-        dishes = Dish.createContactsList(20);
+        // Initialize dishes
+        dishes = Dish.createDishesList(20);
         // Create adapter passing in the sample user data
         DishAdapter adapter = new DishAdapter(dishes);
         // Attach the adapter to the recyclerview to populate items
-        rvContacts.setAdapter(adapter);
+        rvDishes.setAdapter(adapter);
         // Set layout manager to position the items
-        rvContacts.setLayoutManager(new LinearLayoutManager(this));
+        rvDishes.setLayoutManager(new LinearLayoutManager(this));
         // That's all!
     }
 }

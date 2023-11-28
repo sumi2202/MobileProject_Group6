@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.fooddelivery_mobileproject_group6.database.DBHandler;
+
 public class registerpage extends AppCompatActivity {
 
     Button registerBtn, backBtn;
