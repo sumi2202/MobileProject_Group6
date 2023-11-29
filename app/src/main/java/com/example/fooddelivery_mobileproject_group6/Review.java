@@ -5,6 +5,15 @@ public class Review {
     private float rating;
     private String reviewText;
     private byte[] image;
+    private String userEmail;
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
     public String getReviewId() {
         return reviewId;

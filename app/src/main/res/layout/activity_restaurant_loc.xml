@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RestaurantLocActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleTV"
+        android:text="Nearby Locations"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="#248232"
+        android:textSize="32sp">
+
+    </TextView>
+
+
+    <android.widget.SearchView
+        android:id="@+id/locsearchview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search for locations near you"
+        android:layout_marginTop="30dp"
+        android:background="#FFCEB8">
+
+    </android.widget.SearchView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recycleView"
+        android:layout_height="560dp"
+        android:layout_marginTop="20dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
