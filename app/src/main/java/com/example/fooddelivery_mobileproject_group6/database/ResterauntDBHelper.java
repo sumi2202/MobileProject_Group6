@@ -21,7 +21,7 @@ public class ResterauntDBHelper extends SQLiteOpenHelper {
 
     // Creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + RESTERAUNT_ID
-            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + RESTERAUNT_NAME + " TEXT NOT NULL, " + IMAGE + " TEXT);";
+            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + RESTERAUNT_NAME + " TEXT NOT NULL, " + IMAGE + " BLOB);";
 
     public ResterauntDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

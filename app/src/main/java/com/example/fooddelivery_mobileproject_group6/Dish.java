@@ -6,7 +6,7 @@ public class Dish {
     private String dishId;
     private String dishName;
     private String dishPrice;
-    private String image;
+    private byte[] image;
     private String resterauntId;
 
     public String getDishId() {
@@ -37,11 +37,11 @@ public class Dish {
         this.dishPrice = dishPrice;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 

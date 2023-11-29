@@ -4,16 +4,16 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class MenuDBHelper extends SQLiteOpenHelper {
+public class ReviewDBHelper extends SQLiteOpenHelper {
     // Table Name
-    public static final String TABLE_NAME = "menuitems";
+    public static final String TABLE_NAME = "reviews";
 
     // Table columns
-    public static final String DISH_ID = "dishId";
-    public static final String DISH_NAME = "dishName";
-    public static final String DISH_PRICE = "dishPrice";
-    public static final String RESTERAUNT_ID = "resterauntId";
+    public static final String REVIEW_ID = "reviewId";
+    public static final String RATING = "rating";
+    public static final String TEXT = "reviewText";
     public static final String IMAGE = "image";
+    public static final String DISH_ID = "dishId";
 
     // Database Information
     static final String DB_NAME = "foodorderdb";
@@ -22,11 +22,11 @@ public class MenuDBHelper extends SQLiteOpenHelper {
     static final int DB_VERSION = 2;
 
     // Creating table query
-    private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + DISH_ID
-            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DISH_NAME + " TEXT NOT NULL, "
-            + DISH_PRICE + " TEXT, " + RESTERAUNT_ID + " TEXT NOT NULL, " + IMAGE + " BLOB);";
+    private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + REVIEW_ID
+            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DISH_ID + " INTEGER NOT NULL, "
+            + RATING + " TEXT NOT NULL, " + TEXT + " TEXT, " + IMAGE + " BLOB);";
 
-    public MenuDBHelper(Context context) {
+    public ReviewDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
