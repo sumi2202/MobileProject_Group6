@@ -116,6 +116,30 @@ public class DBHandler extends SQLiteOpenHelper {
             return true;
         }
     }
+
+     public List<RestaurantMod> getAllLocations(){
+        List<RestaurantMod> locations = new ArrayList<>();
+
+        String selectQuery = "SELECT * FROM " +
+                LOC_TABLE_NAME;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()){
+
+            do {
+                RestaurantMod location = new RestaurantMod();
+                location.setBranchName(cursor.getString(1));
+                location.setLatitude(cursor.getDouble(2));
+                location.setLongitude(cursor.getDouble(3));
+
+                locations.add(location);
+            } while (cursor.moveToNext());
+        }
+
+        return locations;
+    }
 //onUpgrade method
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
