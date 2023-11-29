@@ -14,6 +14,7 @@ public class ReviewDBHelper extends SQLiteOpenHelper {
     public static final String TEXT = "reviewText";
     public static final String IMAGE = "image";
     public static final String DISH_ID = "dishId";
+    public static final String USER_EMAIL = "userEmail";
 
     // Database Information
     static final String DB_NAME = "foodorderdb";
@@ -24,7 +25,7 @@ public class ReviewDBHelper extends SQLiteOpenHelper {
     // Creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + REVIEW_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DISH_ID + " INTEGER NOT NULL, "
-            + RATING + " TEXT NOT NULL, " + TEXT + " TEXT, " + IMAGE + " BLOB);";
+            + RATING + " FLOAT NOT NULL, " + TEXT + " TEXT, " + USER_EMAIL + " TEXT NOT NULL, " + IMAGE + " BLOB);";
 
     public ReviewDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

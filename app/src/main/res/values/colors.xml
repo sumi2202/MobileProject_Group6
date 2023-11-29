@@ -6,5 +6,8 @@
     <color name="forest_green">#248232</color>
     <color name="carmine">#96031a</color>
     <color name="raisin">#272932</color>
+    <color name="custom_button_color">#248232</color>
+    <color name="custom_header">#F26419</color>
+
     <color name="powder">#fffffa</color>
 </resources>

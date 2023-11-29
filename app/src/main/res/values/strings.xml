@@ -4,4 +4,21 @@
     <string name="hello_user">Hello User</string>
     <string name="subgreeting">Welcome back</string>
     <string name="points_0">Points: 0</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="cart">Cart</string>
+    <string name="delivery">Delivery</string>
+    <string name="taxValue">$-</string>
+    <string name="total_tax">Total Tax</string>
+    <string name="deliveryValue">$-</string>
+    <string name="subtotalValue">$-</string>
+    <string name="information">Information</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="oshawa_on">Oshawa, ON</string>
+    <string name="total">Total</string>
+    <string name="oshawa_ontario">Oshawa,ON</string>
+    <string name="oshawa">Oshawa</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="cash">Cash</string>
+    <string name="place_order">Place Order</string>
 </resources>

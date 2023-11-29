@@ -37,11 +37,12 @@ public class ReviewDBMgr {
         contentValue.put(ReviewDBHelper.TEXT,       review.getReviewText());
         contentValue.put(ReviewDBHelper.IMAGE,      review.getImage());
         contentValue.put(ReviewDBHelper.DISH_ID,    review.getDishId());
+        contentValue.put(ReviewDBHelper.USER_EMAIL, review.getUserEmail());
         database.insert(ReviewDBHelper.TABLE_NAME, null, contentValue);
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] { ReviewDBHelper.REVIEW_ID, ReviewDBHelper.RATING, ReviewDBHelper.IMAGE };
+        String[] columns = new String[] { ReviewDBHelper.REVIEW_ID, ReviewDBHelper.DISH_ID, ReviewDBHelper.RATING, ReviewDBHelper.TEXT, ReviewDBHelper.USER_EMAIL, ReviewDBHelper.IMAGE };
         Cursor cursor = database.query(ReviewDBHelper.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -56,6 +57,7 @@ public class ReviewDBMgr {
         contentValues.put(ReviewDBHelper.TEXT,       review.getReviewText());
         contentValues.put(ReviewDBHelper.IMAGE,      review.getImage());
         contentValues.put(ReviewDBHelper.DISH_ID,    review.getDishId());
+        contentValues.put(ReviewDBHelper.USER_EMAIL, review.getUserEmail());
         int i = database.update(ReviewDBHelper.TABLE_NAME, contentValues, ReviewDBHelper.REVIEW_ID + " = " + review.getReviewId(), null);
         return i;
     }
