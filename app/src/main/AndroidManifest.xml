@@ -35,7 +35,6 @@
             android:name=".RestaurantLocActivity"
             android:exported="false" />
         <activity
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
