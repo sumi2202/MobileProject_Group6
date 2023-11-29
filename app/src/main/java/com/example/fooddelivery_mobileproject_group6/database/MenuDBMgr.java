@@ -39,7 +39,7 @@ public class MenuDBMgr {
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] { MenuDBHelper.DISH_ID, MenuDBHelper.DISH_NAME, MenuDBHelper.DISH_PRICE, MenuDBHelper.IMAGE };
+        String[] columns = new String[] { MenuDBHelper.DISH_ID, MenuDBHelper.DISH_NAME, MenuDBHelper.DISH_PRICE, MenuDBHelper.RESTERAUNT_ID, MenuDBHelper.IMAGE };
         Cursor cursor = database.query(MenuDBHelper.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();

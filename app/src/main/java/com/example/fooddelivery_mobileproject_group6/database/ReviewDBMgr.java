@@ -41,7 +41,7 @@ public class ReviewDBMgr {
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] { ReviewDBHelper.REVIEW_ID, ReviewDBHelper.RATING, ReviewDBHelper.IMAGE };
+        String[] columns = new String[] { ReviewDBHelper.REVIEW_ID, ReviewDBHelper.DISH_ID, ReviewDBHelper.RATING, ReviewDBHelper.TEXT, ReviewDBHelper.IMAGE };
         Cursor cursor = database.query(ReviewDBHelper.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();

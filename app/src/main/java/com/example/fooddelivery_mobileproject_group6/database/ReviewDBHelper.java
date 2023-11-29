@@ -24,7 +24,7 @@ public class ReviewDBHelper extends SQLiteOpenHelper {
     // Creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + REVIEW_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DISH_ID + " INTEGER NOT NULL, "
-            + RATING + " TEXT NOT NULL, " + TEXT + " TEXT, " + IMAGE + " BLOB);";
+            + RATING + " FLOAT NOT NULL, " + TEXT + " TEXT, " + IMAGE + " BLOB);";
 
     public ReviewDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
