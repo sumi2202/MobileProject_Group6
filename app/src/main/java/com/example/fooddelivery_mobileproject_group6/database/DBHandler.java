@@ -1,5 +1,5 @@
 package com.example.fooddelivery_mobileproject_group6.database;
-
+import com.example.fooddelivery_mobileproject_group6.RestaurantMod;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
