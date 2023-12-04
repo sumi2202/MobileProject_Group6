@@ -90,7 +90,7 @@ public class MyCart {
     //  methods like minusNumberDish, plusNumberDish, getTotalFee.
 
     //decrease quantity of a dish in the cart
-    public void minusNumberDish(ArrayList<Dish> listfood, int position, OrderQuantityListener orderQuantityListener) {
+    public void minusNumberDish(ArrayList<Dish> listfood, int position) {
         Dish dish = listfood.get(position);
 
         if (dish.getNumberinCart() == 1) {
@@ -117,12 +117,10 @@ public class MyCart {
             // Decrease the quantity in the list
             dish.setNumberinCart(dish.getNumberinCart() - 1);
         }
-
-        orderQuantityListener.changed();
     }
 
     //increase quantity of a dish in the cart
-    public void plusNumberDish(ArrayList<Dish> listFoodSelected, int position, OrderQuantityListener orderQuantityListener) {
+    public void plusNumberDish(ArrayList<Dish> listFoodSelected, int position) {
         Dish dish = listFoodSelected.get(position);
         SQLiteDatabase db = cartDBHelper.getWritableDatabase();
 
@@ -140,8 +138,6 @@ public class MyCart {
         db.close();
         // Update the quantity in the list
         dish.setNumberinCart(newQuantity);
-
-        orderQuantityListener.changed();
     }
 
     //get the total fee of the dishes 

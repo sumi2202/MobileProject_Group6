@@ -57,6 +57,7 @@ public class menuActivity extends AppCompatActivity {
                 myCart.insertDish(selectedDish);
             }
         });
+
         // Attach the adapter to the recyclerview to populate items
         rvDishes.setAdapter(adapter);
         // Set layout manager to position the items

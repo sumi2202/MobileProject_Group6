@@ -7,17 +7,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.example.fooddelivery_mobileproject_group6.CartListAdapter;
 import com.example.fooddelivery_mobileproject_group6.database.MyCart;
-import com.example.fooddelivery_mobileproject_group6.database.OrderQuantityListener;
+
+import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity {
-    private RecyclerView.Adapter adapter;
-    private RecyclerView recyclerViewList;
+//    private RecyclerView.Adapter adapter;
+//    private RecyclerView recyclerViewList;
     private MyCart myCart;
     private TextView totalFeetxt, taxTxt, deliveryTxt, totalTxt, emptyTxt;
     private double tax;
@@ -30,6 +29,30 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
 
         myCart = new MyCart(this);
+
+        // Lookup the recyclerview in activity layout
+        RecyclerView rvDishes = (RecyclerView) findViewById(R.id.cartView1);
+
+        // Initialize dishes
+        // Create adapter passing in the sample user data
+        CartListAdapter adapter = new CartListAdapter(myCart.getListCart(),this,new CartListAdapter.OrderQuantityListener() {
+            @Override
+            public void onPlusButtonClick(ArrayList<Dish> listFoodSelected, int position) {
+                myCart.plusNumberDish(listFoodSelected, position);
+            }
+
+            @Override
+            public void onMinusButtonClick(ArrayList<Dish> listFoodSelected, int position) {
+                myCart.minusNumberDish(listFoodSelected, position);
+            }
+        });
+
+        // Attach the adapter to the recyclerview to populate items
+        rvDishes.setAdapter(adapter);
+        // Set layout manager to position the items
+        rvDishes.setLayoutManager(new LinearLayoutManager(this));
+        // That's all!
+
         initView();
         intitList();
         calculateOrder();
@@ -46,15 +69,17 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void intitList() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerViewList.setLayoutManager(linearLayoutManager);
-        adapter = new CartListAdapter(myCart.getListCart(), this, new OrderQuantityListener() {
-            @Override
-            public void changed() {
-                calculateOrder();
-            }
-        });
-        recyclerViewList.setAdapter(adapter);
+
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+//        recyclerViewList.setLayoutManager(linearLayoutManager);
+//        adapter = new CartListAdapter(myCart.getListCart(), this, new OrderQuantityListener() {
+//            @Override
+//            public void changed() {
+//                calculateOrder();
+//            }
+//        });
+
+//        recyclerViewList.setAdapter(adapter);
         if (myCart.getListCart().isEmpty()) {
             emptyTxt.setVisibility(View.VISIBLE);
             scrollView.setVisibility(View.GONE);
@@ -84,7 +109,7 @@ public class CartActivity extends AppCompatActivity {
         taxTxt = findViewById(R.id.taxVal);
         deliveryTxt = findViewById(R.id.deliveryVal);
         totalTxt = findViewById(R.id.totalVal);
-        recyclerViewList = findViewById(R.id.cartView1);
+//        recyclerViewList = findViewById(R.id.cartView1);
         scrollView = findViewById(R.id.myScrollView);
         backbtn = findViewById(R.id.btnBack);
         emptyTxt = findViewById(R.id.emptyText);
