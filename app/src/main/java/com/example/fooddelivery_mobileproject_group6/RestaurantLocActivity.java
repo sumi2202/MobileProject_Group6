@@ -10,6 +10,8 @@ import java.util.List;
 
 import android.os.Bundle;
 
+import com.example.fooddelivery_mobileproject_group6.database.DBHandler;
+
 public class RestaurantLocActivity extends AppCompatActivity {
 
     @Override
