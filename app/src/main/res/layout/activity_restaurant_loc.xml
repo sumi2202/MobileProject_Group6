@@ -33,10 +33,18 @@
 
     </android.widget.SearchView>
 
+    <com.google.android.gms.maps.MapView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/mapView"
+        android:contentDescription="Map view">
+
+    </com.google.android.gms.maps.MapView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/recycleView"
-        android:layout_height="560dp"
+        android:layout_height="400dp"
         android:layout_marginTop="20dp">
 
     </androidx.recyclerview.widget.RecyclerView>
