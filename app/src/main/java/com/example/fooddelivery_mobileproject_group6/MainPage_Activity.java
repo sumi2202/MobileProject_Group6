@@ -37,6 +37,26 @@ public class MainPage_Activity extends AppCompatActivity {
         accountBtn = (CardView) findViewById(R.id.account);
 
 
+        //navigating user to their cart
+        cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+        //navigating the user to the restaurant location page
+        nearbyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RestaurantLocActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             /*Cosmetic purpose; It sets the task bar and status bar with the same colour as the colour
             theme I chose to work with*/

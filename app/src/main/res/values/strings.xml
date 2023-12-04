@@ -21,4 +21,5 @@
     <string name="payment_method">Payment Method</string>
     <string name="cash">Cash</string>
     <string name="place_order">Place Order</string>
+    <string name="your_cart_is_empty">Your Cart is empty</string>
 </resources>

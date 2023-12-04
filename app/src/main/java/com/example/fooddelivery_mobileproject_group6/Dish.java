@@ -1,6 +1,7 @@
 package com.example.fooddelivery_mobileproject_group6;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Dish {
     private String dishId;
@@ -8,6 +9,17 @@ public class Dish {
     private String dishPrice;
     private byte[] image;
     private String resterauntId;
+
+    public int getNumberinCart() {
+        return numberinCart;
+    }
+
+    private int numberinCart;
+
+
+    public void setNumberinCart(int numberinCart) {
+        this.numberinCart = numberinCart;
+    }
 
     public String getDishId() {
         return dishId;
@@ -37,8 +49,8 @@ public class Dish {
         this.dishPrice = dishPrice;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getImage() {
+        return Arrays.toString(image);
     }
 
     public void setImage(byte[] image) {

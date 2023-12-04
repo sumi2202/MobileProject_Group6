@@ -38,6 +38,9 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".CartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +51,8 @@
 
         <meta-data
             android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" 
+            android:resource="@array/preloaded_fonts" />
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCpk2m-s6uF8AX9Bd5OCswQstAc8CmfixQ"/>
     </application>
