@@ -38,7 +38,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        double price = Double.parseDouble(listFoodSelected.get(position).getDishPrice());
+        double price = Double.parseDouble(listFoodSelected.get(position).getDishPrice().replace("$", ""));
         int quantity = listFoodSelected.get(position).getNumberinCart();
 
 // Perform multiplication and round the result
@@ -55,14 +55,10 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(listFoodSelected.get(position).getImage(), "drawable", holder.itemView.getContext().getPackageName());
         holder.pic.setImageResource(drawableResourceId);
 
-        holder.plusItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myCart.plusNumberDish(listFoodSelected,position);
-                notifyDataSetChanged();
-                orderQuantityListener.changed();
-            }
-        });
+        holder.plusItem.setOnClickListener(v -> myCart.plusNumberDish(listFoodSelected,position, () -> {
+            notifyDataSetChanged();
+            orderQuantityListener.changed();
+        }));
 
         holder.minusItem.setOnClickListener(v -> myCart.minusNumberDish(listFoodSelected,position, () -> {
             notifyDataSetChanged();

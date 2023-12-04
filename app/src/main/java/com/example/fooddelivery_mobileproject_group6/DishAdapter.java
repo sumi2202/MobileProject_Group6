@@ -15,10 +15,14 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
 
     // Store a member variable for the contacts
     private List<Dish> mDishes;
+    private OnAddButtonClickListener onAddButtonClickListener;
+
 
     // Pass in the contact array into the constructor
-    public DishAdapter(List<Dish> contacts) {
+    public DishAdapter(List<Dish> contacts, OnAddButtonClickListener onAddButtonClickListener) {
         mDishes = contacts;
+        this.onAddButtonClickListener = onAddButtonClickListener;
+
     }
 
     // Usually involves inflating a layout from XML and returning the holder
@@ -76,7 +80,23 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
             nameTextView = (TextView) itemView.findViewById(R.id.dish_name);
             priceTextView = (TextView) itemView.findViewById(R.id.dish_price);
             messageButton = (Button) itemView.findViewById(R.id.add_button);
+            messageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onAddButtonClickListener != null) {
+                        onAddButtonClickListener.onAddButtonClick(getAdapterPosition());
+
+                    }
+
+                    }
+            });
+
         }
+    }
+
+    //interface to handle when user clicks the add button
+    public interface OnAddButtonClickListener {
+        void onAddButtonClick(int position);
     }
 
 }

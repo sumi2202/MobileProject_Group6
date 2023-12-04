@@ -24,8 +24,12 @@ public class MyCart {
 
         ContentValues values = new ContentValues();
         values.put(CartDBHelper.COLUMN_TITLE, dish.getDishName());
+        String formattedPrice = dish.getDishPrice().replaceAll("[^\\d.]", "");
+
         values.put(CartDBHelper.COLUMN_PRICE, dish.getDishPrice());
         values.put(CartDBHelper.COLUMN_QUANTITY, 1); // Initial quantity is set to 1
+
+
 
         long newRowId = db.insert(CartDBHelper.TABLE_NAME, null, values);
 
@@ -58,10 +62,12 @@ public class MyCart {
 
         while (cursor.moveToNext()) {
             String title = cursor.getString(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_TITLE));
-            String price = cursor.getString(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_PRICE));
+            String priceString = cursor.getString(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_PRICE));
             int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_QUANTITY));
 
-            Dish dish = new Dish(title, price, false); // Change false to appropriate value based on your requirement
+            double price = Double.parseDouble(priceString.replace("$", ""));
+
+            Dish dish = new Dish(title, String.valueOf(price), false); // Change false to appropriate value based on your requirement
             listDishes.add(dish);
         }
 
@@ -104,7 +110,7 @@ public class MyCart {
     }
 
 
-    public void plusNumberDish(ArrayList<Dish> listFoodSelected, int position) {
+    public void plusNumberDish(ArrayList<Dish> listFoodSelected, int position, OrderQuantityListener orderQuantityListener) {
         Dish dish = listFoodSelected.get(position);
         SQLiteDatabase db = cartDBHelper.getWritableDatabase();
 
@@ -120,6 +126,10 @@ public class MyCart {
         );
 
         db.close();
+        // Update the quantity in the list
+        dish.setNumberinCart(newQuantity);
+
+        orderQuantityListener.changed();
     }
     public double getTotalFee() {
         SQLiteDatabase db = cartDBHelper.getReadableDatabase();

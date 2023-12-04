@@ -52,7 +52,7 @@ public class RestaurantLocAdapter extends RecyclerView.Adapter<RestaurantLocAdap
         holder.orderButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(context, mainpage.class);    //Intent to navigate to the specified class
+                Intent intent = new Intent(context, menuActivity.class);    //Intent to navigate to the specified class
                 context.startActivity(intent);
             }
         });

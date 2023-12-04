@@ -1,6 +1,7 @@
 package com.example.fooddelivery_mobileproject_group6;
 import com.example.fooddelivery_mobileproject_group6.database.DBHandler;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.widget.SearchView;
@@ -20,6 +21,7 @@ public class RestaurantLocActivity extends AppCompatActivity {
 private MapView locmapview;            //Variable for mapview
 private GoogleMap googmap;          //Google Maps object
 private List<RestaurantMod> locArrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
