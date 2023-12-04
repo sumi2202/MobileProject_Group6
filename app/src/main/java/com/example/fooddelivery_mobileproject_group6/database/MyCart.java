@@ -14,14 +14,17 @@ public class MyCart {
     private Context context;
     private CartDBHelper cartDBHelper;
 
+    //add a constructor initializing the context and DB helper
     public MyCart(Context context) {
         this.context = context;
         this.cartDBHelper = new CartDBHelper(context);
     }
 
+    //insert dish into the cart database
     public void insertDish(Dish dish) {
         SQLiteDatabase db = cartDBHelper.getWritableDatabase();
 
+        //prepare values to be inserted into the cart table
         ContentValues values = new ContentValues();
         values.put(CartDBHelper.COLUMN_TITLE, dish.getDishName());
         String formattedPrice = dish.getDishPrice().replaceAll("[^\\d.]", "");
@@ -30,9 +33,10 @@ public class MyCart {
         values.put(CartDBHelper.COLUMN_QUANTITY, 1); // Initial quantity is set to 1
 
 
-
+        //insert values
         long newRowId = db.insert(CartDBHelper.TABLE_NAME, null, values);
 
+        //if added successfully, show toast message
         if (newRowId != -1) {
             Toast.makeText(context, "Added to your Cart", Toast.LENGTH_SHORT).show();
         }
@@ -40,16 +44,19 @@ public class MyCart {
         db.close();
     }
 
+    //get list of items in the database
     public ArrayList<Dish> getListCart() {
         ArrayList<Dish> listDishes = new ArrayList<>();
         SQLiteDatabase db = cartDBHelper.getReadableDatabase();
 
+        //columns to be retrieved from cart table
         String[] projection = {
                 CartDBHelper.COLUMN_TITLE,
                 CartDBHelper.COLUMN_PRICE,
                 CartDBHelper.COLUMN_QUANTITY
         };
 
+        //perform a query to get data from the cart table
         Cursor cursor = db.query(
                 CartDBHelper.TABLE_NAME,
                 projection,
@@ -60,6 +67,7 @@ public class MyCart {
                 null
         );
 
+        //iterate through query results, populating listDishes arraylist
         while (cursor.moveToNext()) {
             String title = cursor.getString(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_TITLE));
             String priceString = cursor.getString(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_PRICE));
@@ -67,6 +75,7 @@ public class MyCart {
 
             double price = Double.parseDouble(priceString.replace("$", ""));
 
+            //creating dish object then adding it to the list
             Dish dish = new Dish(title, String.valueOf(price), false); // Change false to appropriate value based on your requirement
             listDishes.add(dish);
         }
@@ -74,10 +83,13 @@ public class MyCart {
         cursor.close();
         db.close();
 
+        //returning list of dishes in cart
         return listDishes;
     }
 
     //  methods like minusNumberDish, plusNumberDish, getTotalFee.
+
+    //decrease quantity of a dish in the cart
     public void minusNumberDish(ArrayList<Dish> listfood, int position, OrderQuantityListener orderQuantityListener) {
         Dish dish = listfood.get(position);
 
@@ -109,7 +121,7 @@ public class MyCart {
         orderQuantityListener.changed();
     }
 
-
+    //increase quantity of a dish in the cart
     public void plusNumberDish(ArrayList<Dish> listFoodSelected, int position, OrderQuantityListener orderQuantityListener) {
         Dish dish = listFoodSelected.get(position);
         SQLiteDatabase db = cartDBHelper.getWritableDatabase();
@@ -131,6 +143,8 @@ public class MyCart {
 
         orderQuantityListener.changed();
     }
+
+    //get the total fee of the dishes 
     public double getTotalFee() {
         SQLiteDatabase db = cartDBHelper.getReadableDatabase();
 

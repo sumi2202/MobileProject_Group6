@@ -58,6 +58,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         holder.plusItem.setOnClickListener(v -> myCart.plusNumberDish(listFoodSelected,position, () -> {
             notifyDataSetChanged();
             orderQuantityListener.changed();
+
         }));
 
         holder.minusItem.setOnClickListener(v -> myCart.minusNumberDish(listFoodSelected,position, () -> {
