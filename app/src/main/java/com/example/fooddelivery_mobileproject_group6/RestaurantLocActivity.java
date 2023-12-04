@@ -1,5 +1,5 @@
 package com.example.fooddelivery_mobileproject_group6;
-
+import com.example.fooddelivery_mobileproject_group6.database.DBHandler;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
