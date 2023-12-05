@@ -43,10 +43,8 @@ public class CartActivity extends AppCompatActivity {
              public void onPlusButtonClick(ArrayList<Dish> listFoodSelected, int position, MyCart myCart, CartListAdapter.OrderQuantityListener orderQuantityListener) {
                  myCart.plusNumberDish(listFoodSelected, position);
                  adapter.notifyDataSetChanged();
-                 myCart.getListCart();
+//                 myCart.getListCart();
                  calculateOrder();
-                 Log.d("TAG", Double.toString( myCart.getTotalFee()));
-
              }
 
              @Override
@@ -56,20 +54,6 @@ public class CartActivity extends AppCompatActivity {
                  calculateOrder();
 
              }
-
-//             @Override
-//            public void onPlusButtonClick(ArrayList<Dish> listFoodSelected, int position, MyCart myCart) {
-//                myCart.plusNumberDish(listFoodSelected, position);
-//                adapter.notifyDataSetChanged();
-//                calculateOrder();
-//            }
-
-//            @Override
-//            public void onMinusButtonClick(ArrayList<Dish> listFoodSelected, int position) {
-//                myCart.minusNumberDish(listFoodSelected, position);
-//                adapter.notifyDataSetChanged();
-//                calculateOrder();
-//            }
 
             public void changed() {
                 calculateOrder();
@@ -98,17 +82,6 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void intitList() {
-
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-//        recyclerViewList.setLayoutManager(linearLayoutManager);
-//        adapter = new CartListAdapter(myCart.getListCart(), this, new OrderQuantityListener() {
-//            @Override
-//            public void changed() {
-//                calculateOrder();
-//            }
-//        });
-
-//        recyclerViewList.setAdapter(adapter);
         if (myCart.getListCart().isEmpty()) {
             emptyTxt.setVisibility(View.VISIBLE);
             scrollView.setVisibility(View.GONE);
@@ -122,11 +95,11 @@ public class CartActivity extends AppCompatActivity {
     private void calculateOrder() {
         double percentTax = 0.05;
         double delivery = 5;
+        double totalfee = myCart.getTotalFee();
         tax = Math.round(myCart.getTotalFee() * percentTax * 100.0) / 100.0;
-        double total = Math.round((myCart.getTotalFee() + tax + delivery) * 100.0) / 100;
-        double itemTotal = Math.round(myCart.getTotalFee() * 100.0) / 100.0;
+        double total = Math.round((totalfee + tax + delivery) * 100.0) / 100;
+        double itemTotal = Math.round(totalfee * 100.0) / 100.0;
         totalFeetxt.setText("$" + itemTotal);
-//        totalFeetxt.setText("test");
         taxTxt.setText("$" + tax);
         deliveryTxt.setText("$" + delivery);
         totalTxt.setText("$" + total);
@@ -139,7 +112,6 @@ public class CartActivity extends AppCompatActivity {
         taxTxt = findViewById(R.id.taxVal);
         deliveryTxt = findViewById(R.id.deliveryVal);
         totalTxt = findViewById(R.id.totalVal);
-//        recyclerViewList = findViewById(R.id.cartView1);
         scrollView = findViewById(R.id.myScrollView);
         backbtn = findViewById(R.id.btnBack);
         emptyTxt = findViewById(R.id.emptyText);
