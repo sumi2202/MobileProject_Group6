@@ -22,6 +22,8 @@ public class CartActivity extends AppCompatActivity {
     private double tax;
     private ScrollView scrollView;
     private ImageView backbtn;
+    private CartListAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +37,38 @@ public class CartActivity extends AppCompatActivity {
 
         // Initialize dishes
         // Create adapter passing in the sample user data
-        CartListAdapter adapter = new CartListAdapter(myCart.getListCart(),this,new CartListAdapter.OrderQuantityListener() {
-            @Override
-            public void onPlusButtonClick(ArrayList<Dish> listFoodSelected, int position) {
-                myCart.plusNumberDish(listFoodSelected, position);
-            }
+         adapter = new CartListAdapter(myCart.getListCart(),this, new CartListAdapter.OrderQuantityListener() {
+             @Override
+             public void onPlusButtonClick(ArrayList<Dish> listFoodSelected, int position, MyCart myCart, CartListAdapter.OrderQuantityListener orderQuantityListener) {
+                 myCart.plusNumberDish(listFoodSelected, position);
+                 adapter.notifyDataSetChanged();
+                 calculateOrder();
+             }
 
-            @Override
-            public void onMinusButtonClick(ArrayList<Dish> listFoodSelected, int position) {
-                myCart.minusNumberDish(listFoodSelected, position);
+             @Override
+             public void onMinusButtonClick(ArrayList<Dish> listFoodSelected, int position, MyCart myCart, CartListAdapter.OrderQuantityListener orderQuantityListener) {
+                 myCart.minusNumberDish(listFoodSelected, position);
+                 adapter.notifyDataSetChanged();
+                 calculateOrder();
+
+             }
+
+//             @Override
+//            public void onPlusButtonClick(ArrayList<Dish> listFoodSelected, int position, MyCart myCart) {
+//                myCart.plusNumberDish(listFoodSelected, position);
+//                adapter.notifyDataSetChanged();
+//                calculateOrder();
+//            }
+
+//            @Override
+//            public void onMinusButtonClick(ArrayList<Dish> listFoodSelected, int position) {
+//                myCart.minusNumberDish(listFoodSelected, position);
+//                adapter.notifyDataSetChanged();
+//                calculateOrder();
+//            }
+
+            public void changed() {
+                calculateOrder();
             }
         });
 

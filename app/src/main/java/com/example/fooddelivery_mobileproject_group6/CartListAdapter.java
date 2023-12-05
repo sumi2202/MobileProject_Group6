@@ -2,22 +2,17 @@ package com.example.fooddelivery_mobileproject_group6;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddelivery_mobileproject_group6.database.MyCart;
-import com.example.fooddelivery_mobileproject_group6.Dish;
-import com.example.fooddelivery_mobileproject_group6.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHolder> {
     ArrayList<Dish> listFoodSelected;
@@ -36,10 +31,11 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.item_dish, parent, false);
+//        View contactView = inflater.inflate(R.layout.item_dish, parent, false);
+        View contactView = inflater.inflate(R.layout.cart_viewholder, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
+        ViewHolder viewHolder = new ViewHolder(contactView, myCart, orderQuantityListener);
         return viewHolder;
     }
 
@@ -51,7 +47,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 //    }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         // Get the data model based on position
         Dish dish = listFoodSelected.get(position);
 
@@ -72,6 +68,26 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         // Set image using setImageResource
         int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(listFoodSelected.get(position).getImage(), "drawable", holder.itemView.getContext().getPackageName());
         holder.pic.setImageResource(drawableResourceId);
+
+        holder.plusItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (orderQuantityListener != null) {
+                    orderQuantityListener.onPlusButtonClick(listFoodSelected, position, myCart, orderQuantityListener);
+                }
+            }
+        });
+
+        holder.minusItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (orderQuantityListener != null) {
+                    orderQuantityListener.onMinusButtonClick(listFoodSelected, position, myCart, orderQuantityListener);
+                }
+            }
+        });
+
+
     }
 
 //    @Override
@@ -117,12 +133,19 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         TextView title, feeEachItem, plusItem, minusItem, totalEachItem, num;
         ImageView pic;
 
+        //adding this parts
+        private MyCart myCart;
+        private OrderQuantityListener orderQuantityListener;
+
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, MyCart myCart, OrderQuantityListener orderQuantityListener) {
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
+
+            this.myCart = myCart;
+            this.orderQuantityListener = orderQuantityListener;
 
             title = itemView.findViewById(R.id.titleTxt);
             pic = itemView.findViewById(R.id.pic);
@@ -135,7 +158,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
                 @Override
                 public void onClick(View v) {
                     if (orderQuantityListener != null) {
-                        orderQuantityListener.onPlusButtonClick(listFoodSelected, getAdapterPosition());
+                        orderQuantityListener.onPlusButtonClick(listFoodSelected, getAdapterPosition(), myCart, orderQuantityListener);
 
                     }
 
@@ -146,7 +169,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
                 @Override
                 public void onClick(View v) {
                     if (orderQuantityListener != null) {
-                        orderQuantityListener.onMinusButtonClick(listFoodSelected, getAdapterPosition());
+                        orderQuantityListener.onMinusButtonClick(listFoodSelected, getAdapterPosition(),  myCart, orderQuantityListener);
 
                     }
 
@@ -154,13 +177,17 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
             });
 
         }
+
     }
 
     //interface to handle when user clicks the add button
     public interface OrderQuantityListener {
-        void onPlusButtonClick(ArrayList<Dish> listFoodSelected, int position);
-        void onMinusButtonClick(ArrayList<Dish> listFoodSelected, int position);
+        void onPlusButtonClick(ArrayList<Dish> listFoodSelected, int position, MyCart myCart, OrderQuantityListener orderQuantityListener);
+        void onMinusButtonClick(ArrayList<Dish> listFoodSelected, int position, MyCart myCart, OrderQuantityListener orderQuantityListener);
+
+        void changed();
     }
+
 //
 //    public class ViewHolder extends RecyclerView.ViewHolder {
 //        TextView title, feeEachItem, plusItem, minusItem, totalEachItem, num;
