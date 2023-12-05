@@ -32,9 +32,6 @@ public class MainPage_Activity extends AppCompatActivity {
         nearbyBtn = (CardView) findViewById(R.id.nearby);
         recentBtn = (CardView) findViewById(R.id.recent);
         cartBtn = (CardView) findViewById(R.id.cart);
-        favBtn = (CardView) findViewById(R.id.favourites);
-        pointsBtn = (CardView) findViewById(R.id.points);
-        accountBtn = (CardView) findViewById(R.id.account);
 
 
         //navigating user to their cart
