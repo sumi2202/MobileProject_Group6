@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -50,6 +51,12 @@ public class AddReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_review_layout);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            /*Cosmetic purpose; It sets the task bar and status bar with the same colour as the colour
+            theme I chose to work with*/
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.carmine));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.carmine));
+        }
 
         titleET = findViewById(R.id.viewtitle);
         descET = findViewById(R.id.viewdescription);
@@ -73,7 +80,6 @@ public class AddReviewActivity extends AppCompatActivity {
             );
         }
 
-        // ... (Color buttons and onClickListener)
 
         saveNoteBtn.setOnClickListener(view -> {
             String noteTitle = titleET.getText().toString();

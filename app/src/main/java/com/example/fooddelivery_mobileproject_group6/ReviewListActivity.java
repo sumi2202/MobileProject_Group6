@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -35,6 +36,12 @@ public class ReviewListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.review_main);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            /*Cosmetic purpose; It sets the task bar and status bar with the same colour as the colour
+            theme I chose to work with*/
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.carmine));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.carmine));
+        }
 
         reviewList = new ArrayList<>();
         reviewAdapter = new ReviewAdapter(reviewList, this);
