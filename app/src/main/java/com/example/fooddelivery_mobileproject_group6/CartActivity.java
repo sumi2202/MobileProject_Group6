@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.fooddelivery_mobileproject_group6.database.MyCart;
 
 import java.util.ArrayList;
+import android.util.Log;
 
 public class CartActivity extends AppCompatActivity {
 //    private RecyclerView.Adapter adapter;
@@ -42,7 +43,10 @@ public class CartActivity extends AppCompatActivity {
              public void onPlusButtonClick(ArrayList<Dish> listFoodSelected, int position, MyCart myCart, CartListAdapter.OrderQuantityListener orderQuantityListener) {
                  myCart.plusNumberDish(listFoodSelected, position);
                  adapter.notifyDataSetChanged();
+                 myCart.getListCart();
                  calculateOrder();
+                 Log.d("TAG", Double.toString( myCart.getTotalFee()));
+
              }
 
              @Override
@@ -122,6 +126,7 @@ public class CartActivity extends AppCompatActivity {
         double total = Math.round((myCart.getTotalFee() + tax + delivery) * 100.0) / 100;
         double itemTotal = Math.round(myCart.getTotalFee() * 100.0) / 100.0;
         totalFeetxt.setText("$" + itemTotal);
+//        totalFeetxt.setText("test");
         taxTxt.setText("$" + tax);
         deliveryTxt.setText("$" + delivery);
         totalTxt.setText("$" + total);
