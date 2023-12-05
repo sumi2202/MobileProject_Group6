@@ -51,6 +51,14 @@ public class MainPage_Activity extends AppCompatActivity {
             }
         });
 
+        recentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ReviewListActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 
