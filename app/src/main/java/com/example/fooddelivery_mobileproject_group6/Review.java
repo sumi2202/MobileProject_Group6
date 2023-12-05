@@ -1,33 +1,45 @@
+// Review.java
 package com.example.fooddelivery_mobileproject_group6;
 
-public class Review {
-    private String reviewId;
-    private float rating;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.ByteArrayOutputStream;
+
+public class Review implements Parcelable {
+    private long reviewId;
+    private long dishId;
+    private String rating;
     private String reviewText;
-    private byte[] image;
-    private String userEmail;
+    private byte[] imageBytes; // Store image data as byte array
 
-    public String getUserEmail() {
-        return userEmail;
+    public Review() {
+        // Default constructor
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public String getReviewId() {
+    public long getReviewId() {
         return reviewId;
     }
 
-    public void setReviewId(String reviewId) {
+    public void setReviewId(long reviewId) {
         this.reviewId = reviewId;
     }
 
-    public float getRating() {
+    public long getDishId() {
+        return dishId;
+    }
+
+    public void setDishId(long dishId) {
+        this.dishId = dishId;
+    }
+
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
@@ -40,23 +52,61 @@ public class Review {
     }
 
     public byte[] getImage() {
-        return image;
+        return imageBytes;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImage(byte[] imageBytes) {
+        this.imageBytes = imageBytes;
     }
 
-    public String getDishId() {
-        return dishId;
+    public Bitmap getImageBitmap() {
+        if (imageBytes != null) {
+            return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        } else {
+            return null;
+        }
     }
 
-    public void setDishId(String dishId) {
-        this.dishId = dishId;
+    // Parcelable implementation
+    protected Review(Parcel in) {
+        reviewId = in.readLong();
+        dishId = in.readLong();
+        rating = in.readString();
+        reviewText = in.readString();
+        imageBytes = in.createByteArray();
     }
 
-    private String dishId;
+    public static final Creator<Review> CREATOR = new Creator<Review>() {
+        @Override
+        public Review createFromParcel(Parcel in) {
+            return new Review(in);
+        }
 
+        @Override
+        public Review[] newArray(int size) {
+            return new Review[size];
+        }
+    };
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(reviewId);
+        dest.writeLong(dishId);
+        dest.writeString(rating);
+        dest.writeString(reviewText);
+        dest.writeByteArray(imageBytes);
+    }
+
+    // Helper method to convert Bitmap to byte array
+    public static byte[] bitmapToByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
 }
 
