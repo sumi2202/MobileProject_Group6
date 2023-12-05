@@ -35,6 +35,10 @@
         <activity
             android:name=".RestaurantLocActivity"
             android:exported="false" />
+        <activity android:name=".AddReviewActivity"
+            android:exported="false"/>
+        <activity android:name=".ReviewListActivity"
+            android:exported="false"/>
 
         <activity android:name=".CartActivity"
             android:exported="false"/>
