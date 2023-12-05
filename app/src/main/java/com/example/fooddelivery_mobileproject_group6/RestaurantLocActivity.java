@@ -2,8 +2,11 @@ package com.example.fooddelivery_mobileproject_group6;
 import com.example.fooddelivery_mobileproject_group6.database.DBHandler;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Build;
 import android.widget.SearchView;
 import com.example.fooddelivery_mobileproject_group6.database.DBHandler;
 import com.google.android.gms.maps.*;                           //Imports google maps libraries
@@ -33,6 +36,12 @@ private List<RestaurantMod> locArrayList;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_loc);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            /*Cosmetic purpose; It sets the task bar and status bar with the same colour as the colour
+            theme I chose to work with*/
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.carmine));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.carmine));
+        }
 
         locmapview = (MapView) findViewById(R.id.mapView);      //Finds the map view by id
         locmapview.onCreate(savedInstanceState);
