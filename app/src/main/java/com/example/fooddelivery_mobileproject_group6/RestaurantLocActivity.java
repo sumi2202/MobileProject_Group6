@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.widget.SearchView;
 import com.example.fooddelivery_mobileproject_group6.database.DBHandler;
 import com.google.android.gms.maps.*;                           //Imports google maps libraries
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 

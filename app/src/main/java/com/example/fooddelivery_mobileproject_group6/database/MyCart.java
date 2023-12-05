@@ -68,7 +68,8 @@ public class MyCart {
         );
 
         //iterate through query results, populating listDishes arraylist
-        while (cursor.moveToNext()) {
+        cursor.moveToFirst();
+        do {
             String title = cursor.getString(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_TITLE));
             String priceString = cursor.getString(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_PRICE));
             int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_QUANTITY));
@@ -78,7 +79,7 @@ public class MyCart {
             //creating dish object then adding it to the list
             Dish dish = new Dish(title, String.valueOf(price), false); // Change false to appropriate value based on your requirement
             listDishes.add(dish);
-        }
+        } while (cursor.moveToNext());
 
         cursor.close();
         db.close();
@@ -159,14 +160,16 @@ public class MyCart {
                 null
         );
         double totalFee = 0;
-        while (cursor.moveToNext()) {
-            double price = cursor.getDouble(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_PRICE));
+        cursor.moveToFirst();
+
+        do {
+            double price = Double.parseDouble(cursor.getString(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_PRICE)).replace("$", ""));;
             int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(CartDBHelper.COLUMN_QUANTITY));
 
             totalFee += price * quantity;
-        }
+        } while (cursor.moveToNext());
 
-        cursor.close();
+            cursor.close();
         db.close();
 
         return totalFee;
